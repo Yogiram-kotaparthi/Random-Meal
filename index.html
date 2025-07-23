@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Random Meal Recipe Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #4a4a4a;
+    }
+    h1 {
+      color: #d97706;
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #f59e0b;
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-bottom: 30px;
+    }
+    button:hover {
+      background-color: #b45309;
+    }
+    .recipe {
+      max-width: 600px;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+      text-align: left;
+    }
+    .recipe h2 {
+      margin-top: 0;
+      color: #b45309;
+    }
+    .recipe ul {
+      padding-left: 20px;
+    }
+    .recipe p {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍲 Random Meal Recipe Generator</h1>
+  <button onclick="showRecipe()">Show me a recipe!</button>
+
+  <div class="recipe" id="recipeDisplay" style="display:none;">
+    <h2 id="recipeName"></h2>
+    <h4>Ingredients:</h4>
+    <ul id="ingredientsList"></ul>
+    <h4>Instructions:</h4>
+    <p id="instructions"></p>
+  </div>
+
+<script>
+  const recipes = [
+    {
+      name: "Spaghetti Aglio e Olio",
+      ingredients: [
+        "200g spaghetti",
+        "3 cloves garlic, thinly sliced",
+        "1/4 cup olive oil",
+        "1/2 tsp chili flakes",
+        "Salt and pepper to taste",
+        "Fresh parsley, chopped"
+      ],
+      instructions: "Cook spaghetti until al dente. In a pan, heat olive oil and sauté garlic until golden. Add chili flakes. Toss spaghetti with garlic oil, season with salt and pepper, and garnish with parsley."
+    },
+    {
+      name: "Caprese Salad",
+      ingredients: [
+        "2 large tomatoes, sliced",
+        "200g fresh mozzarella, sliced",
+        "Fresh basil leaves",
+        "2 tbsp olive oil",
+        "Salt and black pepper"
+      ],
+      instructions: "Arrange tomato and mozzarella slices on a plate. Top with basil leaves. Drizzle olive oil over and season with salt and pepper."
+    },
+    {
+      name: "Vegetable Stir Fry",
+      ingredients: [
+        "1 cup broccoli florets",
+        "1 carrot, sliced",
+        "1 bell pepper, sliced",
+        "2 tbsp soy sauce",
+        "1 tbsp sesame oil",
+        "2 cloves garlic, minced"
+      ],
+      instructions: "Heat sesame oil in a wok. Add garlic and sauté until fragrant. Add vegetables and stir-fry for 5-7 minutes. Pour soy sauce, toss, and serve hot."
+    },
+    {
+      name: "Avocado Toast",
+      ingredients: [
+        "2 slices of bread, toasted",
+        "1 ripe avocado",
+        "Salt, pepper, and lemon juice to taste",
+        "Optional: chili flakes or cherry tomatoes"
+      ],
+      instructions: "Mash avocado with salt, pepper, and lemon juice. Spread on toasted bread. Top with chili flakes or cherry tomatoes if desired."
+    }
+  ];
+
+  function showRecipe() {
+    const idx = Math.floor(Math.random() * recipes.length);
+    const recipe = recipes[idx];
+
+    document.getElementById('recipeName').innerText = recipe.name;
+
+    const ul = document.getElementById('ingredientsList');
+    ul.innerHTML = '';
+    recipe.ingredients.forEach(ing => {
+      const li = document.createElement('li');
+      li.innerText = ing;
+      ul.appendChild(li);
+    });
+
+    document.getElementById('instructions').innerText = recipe.instructions;
+    document.getElementById('recipeDisplay').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
